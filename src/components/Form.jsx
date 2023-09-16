@@ -142,7 +142,7 @@ const Form = () => {
 
                         <FormControl isRequired>
                             <FormLabel>Do you have a relative in Commonwealth Youth Council(CYC)?</FormLabel>
-                            <RadioGroup onChange={(value) => setHasRelativeInCYC(value === "yes")}>
+                            <RadioGroup onChange={(value) => handleRelativeChange(value)}>
                                 <Stack direction="row">
                                     <Radio value="yes">Yes</Radio>
                                     <Radio value="no">No</Radio>
