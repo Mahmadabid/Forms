@@ -61,7 +61,7 @@ const Form = () => {
     }
 
     return (
-        <Box margin="0 auto" padding="4" overflowX="hidden">
+        <Box margin="0 auto" padding="4">
             {showConfetti && <Confetti />}
             {isSubmitted ? (
                 <Text fontSize="2xl" textAlign="center">
@@ -70,7 +70,10 @@ const Form = () => {
                     We will keep you updated on the event and send you a reminder before the event.
                 </Text>
             ) : (
-                <form onSubmit={handleSubmit}>
+
+                <form name="registrationForm" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+                    <input type="hidden" name="form-name" value="registrationForm" />
+
                     <Stack spacing={4}>
                         <FormControl isRequired>
                             <FormLabel>Name</FormLabel>
@@ -154,8 +157,7 @@ const Form = () => {
                             </RadioGroup>
                         </FormControl>
 
-                        <Button mt={4} colorScheme="blue" type="submit">Submit</Button>
-                    </Stack>
+                        <Button mt={4} colorScheme="blue" type="submit">Submit</Button>                    </Stack>
                 </form>
             )}
         </Box>
