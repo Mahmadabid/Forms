@@ -61,7 +61,7 @@ const Form = () => {
     }
 
     return (
-        <Box maxW="600px" margin="0 auto" padding="4">
+        <Box margin="0 auto" padding="4" overflowX="hidden">
             {showConfetti && <Confetti />}
             {isSubmitted ? (
                 <Text fontSize="2xl" textAlign="center">
