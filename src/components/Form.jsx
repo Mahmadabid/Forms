@@ -53,29 +53,43 @@ const Form = () => {
         setHasRelativeInCYC(value === "yes");
         handleInputChange('hasRelativeInCYC', value);
     }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSfpFtt02i8BHXEN0Ggwn92KHr1777_UCoLhZ51WyMXyUmCa7g/formResponse';
-
         const formEntries = {
-            "entry.2158446": formData.name,
-            "entry.2040070596": formData.fatherName,
-            "entry.450925682": formData.cnic,
-            "entry.1729225793": formData.email,
-            "entry.2127968864": formData.whatsappNo,
-            "entry.1052229299": formData.college,
-            "entry.1369234903": formData.country,
-            "entry.472403008": formData.hasRelativeInCYC,
-            "entry.1060629598": formData.relativeName,
-            "entry.1494358699": formData.relation,
-            "entry.1887889065": formData.relativePostalAddress,
-            "entry.986365769": formData.workedForNGO,
-            "entry.1110019471": formData.planningToMove
+            "entry.1200313903": formData.name,
+            "entry.1886733330": formData.fatherName,
+            "entry.1426066189": formData.cnic,
+            "entry.31463558": formData.email,
+            "entry.1864483151": formData.whatsappNo,
+            "entry.1377809651": formData.college,  // Assuming the might not always have the 'college' field
+            "entry.658474298": formData.country,
+            "entry.36535761": formData.hasRelativeInCYC,
+            "entry.1578887118": formData.relativeName || '_',  // Assuming the might not always have the 'relativeName' field
+            "entry.37821331": formData.relation || '_', // Assuming the might not always have the 'relation' field
+            "entry.418957481": formData.relativePostalAddress || '_', // Assuming the might not always have the 'relativePostalAddress' field
+            "entry.273056476": formData.workedForNGO,
+            "entry.1470184077": formData.planningToMove
         };
+        // const formEntries = {
+        //     "entry.2158446": formData.name,
+        //     "entry.2040070596": formData.fatherName,
+        //     "entry.450925682": formData.cnic,
+        //     "entry.1729225793": formData.email,
+        //     "entry.2127968864": formData.whatsappNo,
+        //     "entry.1052229299": formData.college,  // Assuming the formData might not always have the 'college' field
+        //     "entry.1369234903": formData.country,
+        //     "entry.472403008": formData.hasRelativeInCYC,
+        //     "entry.1060629598": formData.relativeName || '_',  // Assuming the formData might not always have the 'relativeName' field
+        //     "entry.1494358699": formData.relation || '_', // Assuming the formData might not always have the 'relation' field
+        //     "entry.1887889065": formData.relativePostalAddress || '_', // Assuming the formData might not always have the 'relativePostalAddress' field
+        //     "entry.986365769": formData.workedForNGO,
+        //     "entry.1110019471": formData.planningToMove
+        // };
 
+        const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSdqAY0g8-ioUnLYqiKaKNkaLiCRdXkC_DYtBsB-QtXpC-4m7w/formResponse';
+   
         const urlEncodedData = new URLSearchParams(formEntries);
+        console.log(urlEncodedData, formEntries)
 
         try {
             await fetch(googleFormURL, {
@@ -94,6 +108,7 @@ const Form = () => {
         }
     }
 
+
     return (
         <Box margin="0 auto" padding="4">
             {showConfetti && <Confetti />}
@@ -106,6 +121,7 @@ const Form = () => {
             ) : (
                 <form onSubmit={handleSubmit}>
                     <Stack spacing={4}>
+                        
                         <FormControl isRequired>
                             <FormLabel>Name</FormLabel>
                             <Input placeholder="Enter your name" onChange={(e) => handleInputChange('name', e.target.value)} />
@@ -129,6 +145,11 @@ const Form = () => {
                         <FormControl isRequired>
                             <FormLabel>Whatsapp No.</FormLabel>
                             <Input placeholder="Enter your Whatsapp number" onChange={(e) => handleInputChange('whatsappNo', e.target.value)} />
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>College/Universiy</FormLabel>
+                            <Input placeholder="College or University" onChange={(e) => handleInputChange('college', e.target.value)} />
                         </FormControl>
 
                         <FormControl isRequired>
@@ -200,3 +221,71 @@ const Form = () => {
 }
 
 export default Form;
+
+
+
+// import React, { useState } from 'react';
+// import {
+//     Box,
+//     FormControl,
+//     FormLabel,
+//     Input,
+//     Button,
+//     Text
+// } from '@chakra-ui/react';
+// import Confetti from 'react-confetti';
+
+// const Form = () => {
+//     const [showConfetti, setShowConfetti] = useState(false);
+//     const [isSubmitted, setIsSubmitted] = useState(false);
+//     const [name, setName] = useState('');
+
+//     const handleSubmit = async (event) => {
+//         event.preventDefault();
+
+//         const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSdqAY0g8-ioUnLYqiKaKNkaLiCRdXkC_DYtBsB-QtXpC-4m7w/formResponse';
+//         const formEntry = {
+//             "entry.1028146357": name
+//         };
+
+//         const urlEncodedData = new URLSearchParams(formEntry);
+
+//         try {
+//             await fetch(googleFormURL, {
+//                 method: 'POST',
+//                 mode: 'no-cors',
+//                 headers: {
+//                     'Content-Type': 'application/x-www-form-urlencoded'
+//                 },
+//                 body: urlEncodedData.toString()
+//             });
+
+//             setIsSubmitted(true);
+//             setShowConfetti(true);
+//         } catch (error) {
+//             console.error("Error submitting form: ", error);
+//         }
+//     }
+
+//     return (
+//         <Box margin="0 auto" padding="4">
+//             {showConfetti && <Confetti />}
+//             {isSubmitted ? (
+//                 <Text fontSize="2xl" textAlign="center">
+//                     🎉 Thank you for registering! 🎉
+//                 </Text>
+//             ) : (
+//                 <form onSubmit={handleSubmit}>
+//                     <FormControl isRequired>
+//                         <FormLabel>Name</FormLabel>
+//                         <Input placeholder="Enter your name" value={name} onChange={(e) => setName(e.target.value)} />
+//                     </FormControl>
+
+//                     <Button mt={4} colorScheme="blue" type="submit">Submit</Button>
+//                 </form>
+//             )}
+//         </Box>
+//     );
+// }
+
+// export default Form;
