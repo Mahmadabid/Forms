@@ -43,6 +43,7 @@ const Form = () => {
         setHasRelativeInCYC(value === 'Yes' ? true : false);
         handleInputChange('hasRelativeInCYC', value);
     }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formEntries = {
