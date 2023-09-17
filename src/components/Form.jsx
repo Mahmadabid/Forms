@@ -40,8 +40,19 @@ const Form = () => {
     }
 
     const handleRelativeChange = (value) => {
-        setHasRelativeInCYC(value === 'Yes' ? true : false);
         handleInputChange('hasRelativeInCYC', value);
+        if (value === 'Yes') {
+            setHasRelativeInCYC(true)
+        }
+        else {
+            setHasRelativeInCYC(false)
+            setFormData(prevState => ({
+                ...prevState,
+                relativeName: '',
+                relation: '',
+                relativePostalAddress: ''
+            }))
+        }
     }
 
     const handleSubmit = async (event) => {
@@ -52,11 +63,11 @@ const Form = () => {
             "entry.1180421350": formData.cnic,
             "entry.1606369737": formData.email,
             "entry.2051707402": formData.whatsappNo,
-            "entry.45235486": formData.college, 
+            "entry.45235486": formData.college,
             "entry.523299909": formData.country,
             "entry.1990961655": formData.hasRelativeInCYC,
-            "entry.1900030160": formData.relativeName, 
-            "entry.1924548859": formData.relation, 
+            "entry.1900030160": formData.relativeName,
+            "entry.1924548859": formData.relation,
             "entry.1852414651": formData.relativePostalAddress,
             "entry.1780404399": formData.workedForNGO,
             "entry.1369126912": formData.planningToMove
@@ -145,23 +156,23 @@ const Form = () => {
                             </RadioGroup>
                         </FormControl>
 
-                         {hasRelativeInCYC ? (
-                            <> 
-                        <FormControl isRequired>
-                            <FormLabel>Name of relative</FormLabel>
-                            <Input placeholder="Enter relative's name" value={formData.relativeName} onChange={(e) => handleInputChange('relativeName', e.target.value)} />
-                        </FormControl>
+                        {hasRelativeInCYC ? (
+                            <>
+                                <FormControl isRequired>
+                                    <FormLabel>Name of relative</FormLabel>
+                                    <Input placeholder="Enter relative's name" value={formData.relativeName} onChange={(e) => handleInputChange('relativeName', e.target.value)} />
+                                </FormControl>
 
-                        <FormControl isRequired>
-                            <FormLabel>Relation</FormLabel>
-                            <Input placeholder="Enter relation" value={formData.relation} onChange={(e) => handleInputChange('relation', e.target.value)} />
-                        </FormControl>
+                                <FormControl isRequired>
+                                    <FormLabel>Relation</FormLabel>
+                                    <Input placeholder="Enter relation" value={formData.relation} onChange={(e) => handleInputChange('relation', e.target.value)} />
+                                </FormControl>
 
-                        <FormControl isRequired>
-                            <FormLabel>Postal address of relative</FormLabel>
-                            <Input placeholder="Enter postal address" value={formData.relativePostalAddress} onChange={(e) => handleInputChange('relativePostalAddress', e.target.value)} />
-                        </FormControl>
-                         </>) : (<></>)
+                                <FormControl isRequired>
+                                    <FormLabel>Postal address of relative</FormLabel>
+                                    <Input placeholder="Enter postal address" value={formData.relativePostalAddress} onChange={(e) => handleInputChange('relativePostalAddress', e.target.value)} />
+                                </FormControl>
+                            </>) : (<></>)
                         }
                         <FormControl isRequired>
                             <FormLabel>Have you ever worked for an International NGO?</FormLabel>
