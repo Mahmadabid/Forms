@@ -207,6 +207,6 @@ return (
         }
     </Box >
 );
-}
+
 
 export default Form;
