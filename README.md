@@ -1,2 +1,3 @@
-# Forms
- An intuitive and dynamic registration form deployed on Netlify, built using React and Chakra UI. This portal seamlessly integrates advanced form functionalities like conditional fields, a comprehensive country dropdown, and an enhanced user experience upon submission with animations and confetti effects. Seamlessly hosted and fast-performing, it's ideal for any event or member registration needs.
+# Gatsby & ChakraUI Frontend with Google Forms Backend
+
+This repository houses a dynamic web application crafted using Gatsby for its blazing-fast static site generation capabilities, and Chakra UI for a modern, accessible, and responsive user interface. At its core, it leverages Google Forms as a lightweight backend solution, allowing for seamless data collection and user interactions without the need for a traditional server setup. Ideal for projects where simplicity, speed, and user experience are paramount. Dive in to explore the fusion of these technologies! 
