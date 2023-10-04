@@ -97,116 +97,116 @@ const Form = () => {
             setIsSubmitting(false);  // Enable the button by setting isSubmitting to false after fetching data
         }
     }
+
+
+
+    return (
+        <Box margin="0 auto" padding="4">
+            {showConfetti && <Confetti />}
+            {isSubmitted ? (
+                <Text fontSize="2xl" textAlign="center">
+                    🎉 Thank you for registering! 🎉
+                    <br />
+                    We will keep you updated on the event and send you a reminder before the event.
+                </Text>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <Stack spacing={4}>
+                        <FormControl isRequired>
+                            <FormLabel>Name</FormLabel>
+                            <Input placeholder="Enter your name" value={formData.name} onChange={(e) => handleInputChange('name', e.target.value)} />
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>Father Name</FormLabel>
+                            <Input placeholder="Enter your father's name" value={formData.fatherName} onChange={(e) => handleInputChange('fatherName', e.target.value)} />
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>CNIC/Passport</FormLabel>
+                            <Input placeholder="Enter your CNIC or Passport number" value={formData.cnic} onChange={(e) => handleInputChange('cnic', e.target.value)} />
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>Email</FormLabel>
+                            <Input placeholder="Enter your email" type="email" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} />
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>Whatsapp No.</FormLabel>
+                            <Input placeholder="Enter your Whatsapp number" value={formData.whatsappNo} onChange={(e) => handleInputChange('whatsappNo', e.target.value)} />
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>College/Universiy</FormLabel>
+                            <Input placeholder="College or University" value={formData.college} onChange={(e) => handleInputChange('college', e.target.value)} />
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>Country</FormLabel>
+                            <Select placeholder="Select your country" value={formData.country} onChange={(e) => handleInputChange('country', e.target.value)}>
+                                {countries.map(country => (
+                                    <option key={country} value={country}>{country}</option>
+                                ))}
+                            </Select>
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>Do you have a relative in CYC?</FormLabel>
+                            <RadioGroup value={formData.hasRelativeInCYC} onChange={(value) => handleRelativeChange(value)}>
+                                <Stack direction="row">
+                                    <Radio value="Yes">Yes</Radio>
+                                    <Radio value="No">No</Radio>
+                                </Stack>
+                            </RadioGroup>
+                        </FormControl>
+
+                        {hasRelativeInCYC ? (
+                            <>
+                                <FormControl isRequired>
+                                    <FormLabel>Name of relative</FormLabel>
+                                    <Input placeholder="Enter relative's name" value={formData.relativeName} onChange={(e) => handleInputChange('relativeName', e.target.value)} />
+                                </FormControl>
+
+                                <FormControl isRequired>
+                                    <FormLabel>Relation</FormLabel>
+                                    <Input placeholder="Enter relation" value={formData.relation} onChange={(e) => handleInputChange('relation', e.target.value)} />
+                                </FormControl>
+
+                                <FormControl isRequired>
+                                    <FormLabel>Postal address of relative</FormLabel>
+                                    <Input placeholder="Enter postal address" value={formData.relativePostalAddress} onChange={(e) => handleInputChange('relativePostalAddress', e.target.value)} />
+                                </FormControl>
+                            </>) : (<></>)
+                        }
+                        <FormControl isRequired>
+                            <FormLabel>Have you ever worked for an International NGO?</FormLabel>
+                            <RadioGroup value={formData.workedForNGO} onChange={(value) => handleInputChange('workedForNGO', value)}>
+                                <Stack direction="row">
+                                    <Radio value="Yes">Yes</Radio>
+                                    <Radio value="No">No</Radio>
+                                </Stack>
+                            </RadioGroup>
+                        </FormControl>
+
+                        <FormControl isRequired>
+                            <FormLabel>Are you planning to move to England, Scotland, Wales, or Northern Ireland after graduation?</FormLabel>
+                            <RadioGroup value={formData.planningToMove} onChange={(value) => handleInputChange('planningToMove', value)}>
+                                <Stack direction="row">
+                                    <Radio value="Yes">Yes</Radio>
+                                    <Radio value="No">No</Radio>
+                                    <Radio value="Maybe">Maybe</Radio>
+                                </Stack>
+                            </RadioGroup>
+                        </FormControl>
+
+                        <Button mt={4} colorScheme="blue" type="submit" isLoading={isSubmitting}>Submit</Button>
+                    </Stack>
+                </form>
+            )
+            }
+        </Box >
+    );
 }
-
-
-return (
-    <Box margin="0 auto" padding="4">
-        {showConfetti && <Confetti />}
-        {isSubmitted ? (
-            <Text fontSize="2xl" textAlign="center">
-                🎉 Thank you for registering! 🎉
-                <br />
-                We will keep you updated on the event and send you a reminder before the event.
-            </Text>
-        ) : (
-            <form onSubmit={handleSubmit}>
-                <Stack spacing={4}>
-                    <FormControl isRequired>
-                        <FormLabel>Name</FormLabel>
-                        <Input placeholder="Enter your name" value={formData.name} onChange={(e) => handleInputChange('name', e.target.value)} />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>Father Name</FormLabel>
-                        <Input placeholder="Enter your father's name" value={formData.fatherName} onChange={(e) => handleInputChange('fatherName', e.target.value)} />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>CNIC/Passport</FormLabel>
-                        <Input placeholder="Enter your CNIC or Passport number" value={formData.cnic} onChange={(e) => handleInputChange('cnic', e.target.value)} />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>Email</FormLabel>
-                        <Input placeholder="Enter your email" type="email" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>Whatsapp No.</FormLabel>
-                        <Input placeholder="Enter your Whatsapp number" value={formData.whatsappNo} onChange={(e) => handleInputChange('whatsappNo', e.target.value)} />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>College/Universiy</FormLabel>
-                        <Input placeholder="College or University" value={formData.college} onChange={(e) => handleInputChange('college', e.target.value)} />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>Country</FormLabel>
-                        <Select placeholder="Select your country" value={formData.country} onChange={(e) => handleInputChange('country', e.target.value)}>
-                            {countries.map(country => (
-                                <option key={country} value={country}>{country}</option>
-                            ))}
-                        </Select>
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>Do you have a relative in CYC?</FormLabel>
-                        <RadioGroup value={formData.hasRelativeInCYC} onChange={(value) => handleRelativeChange(value)}>
-                            <Stack direction="row">
-                                <Radio value="Yes">Yes</Radio>
-                                <Radio value="No">No</Radio>
-                            </Stack>
-                        </RadioGroup>
-                    </FormControl>
-
-                    {hasRelativeInCYC ? (
-                        <>
-                            <FormControl isRequired>
-                                <FormLabel>Name of relative</FormLabel>
-                                <Input placeholder="Enter relative's name" value={formData.relativeName} onChange={(e) => handleInputChange('relativeName', e.target.value)} />
-                            </FormControl>
-
-                            <FormControl isRequired>
-                                <FormLabel>Relation</FormLabel>
-                                <Input placeholder="Enter relation" value={formData.relation} onChange={(e) => handleInputChange('relation', e.target.value)} />
-                            </FormControl>
-
-                            <FormControl isRequired>
-                                <FormLabel>Postal address of relative</FormLabel>
-                                <Input placeholder="Enter postal address" value={formData.relativePostalAddress} onChange={(e) => handleInputChange('relativePostalAddress', e.target.value)} />
-                            </FormControl>
-                        </>) : (<></>)
-                    }
-                    <FormControl isRequired>
-                        <FormLabel>Have you ever worked for an International NGO?</FormLabel>
-                        <RadioGroup value={formData.workedForNGO} onChange={(value) => handleInputChange('workedForNGO', value)}>
-                            <Stack direction="row">
-                                <Radio value="Yes">Yes</Radio>
-                                <Radio value="No">No</Radio>
-                            </Stack>
-                        </RadioGroup>
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>Are you planning to move to England, Scotland, Wales, or Northern Ireland after graduation?</FormLabel>
-                        <RadioGroup value={formData.planningToMove} onChange={(value) => handleInputChange('planningToMove', value)}>
-                            <Stack direction="row">
-                                <Radio value="Yes">Yes</Radio>
-                                <Radio value="No">No</Radio>
-                                <Radio value="Maybe">Maybe</Radio>
-                            </Stack>
-                        </RadioGroup>
-                    </FormControl>
-
-                    <Button mt={4} colorScheme="blue" type="submit" isLoading={isSubmitting}>Submit</Button>
-                </Stack>
-            </form>
-        )
-        }
-    </Box >
-);
-
 
 export default Form;
