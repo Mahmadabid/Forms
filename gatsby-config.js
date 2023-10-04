@@ -10,7 +10,7 @@
 module.exports = {
   siteMetadata: {
     title: `Forms`,
-    description: `Forms with Netlify and chakra`,
+    description: `Forms with Netlify and chakra using google forms as backend`,
     author: `Ahmad`,
   },
   plugins: [
