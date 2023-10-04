@@ -75,7 +75,7 @@ const Form = () => {
             "entry.1369126912": formData.planningToMove
         };
 
-        const googleFormURL = process.env.FormURL;
+        const googleFormURL = process.env.FORMURL;
 
         const urlEncodedData = new URLSearchParams(formEntries);
 
