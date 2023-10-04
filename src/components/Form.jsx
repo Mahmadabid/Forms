@@ -73,7 +73,7 @@ const Form = () => {
             "entry.1369126912": formData.planningToMove
         };
 
-        const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSdqAY0g8-ioUnLYqiKaKNkaLiCRdXkC_DYtBsB-QtXpC-4m7w/formResponse';
+        const googleFormURL = process.env.FormURL;
 
         const urlEncodedData = new URLSearchParams(formEntries);
 
@@ -147,7 +147,7 @@ const Form = () => {
                         </FormControl>
 
                         <FormControl isRequired>
-                            <FormLabel>Do you have a relative in Commonwealth Youth Council(CYC)?</FormLabel>
+                            <FormLabel>Do you have a relative in CYC?</FormLabel>
                             <RadioGroup value={formData.hasRelativeInCYC} onChange={(value) => handleRelativeChange(value)}>
                                 <Stack direction="row">
                                     <Radio value="Yes">Yes</Radio>
